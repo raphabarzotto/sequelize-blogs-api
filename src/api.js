@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 
 // antes ou depois?
-app.use(errorMiddleware);
+app.use(handleError);
 
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`
