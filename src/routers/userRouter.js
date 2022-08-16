@@ -12,7 +12,7 @@ userRouter.post('/login', middlewares.validateLogin, userControllers.postLogin)
   .get('/user', middlewares.validateToken, userControllers.getAllUser)
 // requisito 6, validateToken + getByIdUser
   .get('/user/:id', middlewares.validateToken, userControllers.getByIdUser)
-// requisito 16, validateToken + deleteUser
+// requisito 17, validateToken + deleteUser
   .delete('/user/me', middlewares.validateToken, userControllers.deleteUser);
 
 module.exports = { userRouter };
