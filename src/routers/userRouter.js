@@ -1,6 +1,6 @@
 const { Router } = require('express');
-const { userControllers } = require('../controllers');
-const middlewares = require('../middlewares');
+// const { userControllers } = require('../controllers');
+// const middlewares = require('../middlewares');
 
 const userRouter = Router();
 // userRouter.post('/login', middlewares.validateLogin, userControllers.postLogin)

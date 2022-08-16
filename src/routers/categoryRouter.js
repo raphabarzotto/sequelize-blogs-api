@@ -1,6 +1,6 @@
 const { Router } = require('express');
-const { categoryControllers } = require('../controllers');
-const middlewares = require('../middlewares');
+// const { categoryControllers } = require('../controllers');
+// const middlewares = require('../middlewares');
 
 const categoryRouter = Router();
 
