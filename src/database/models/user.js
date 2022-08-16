@@ -5,15 +5,28 @@ const userModel = (sequelize, DataTypes) => {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
+        allowNull: false,
       },
 
-      displayName: DataTypes.STRING,
+      displayName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
 
-      email: DataTypes.STRING,
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
 
-      password: DataTypes.STRING,
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
 
-      image: DataTypes.STRING,
+      image: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
     },
 
     {

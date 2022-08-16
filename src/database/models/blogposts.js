@@ -9,9 +9,15 @@ const createBlogPostModel = (sequelize, DataTypes) => {
         allowNull: false,
       },
 
-      title: DataTypes.STRING,
+      title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
 
-      content: DataTypes.STRING,
+      content: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
 
       userId: {
         type: DataTypes.INTEGER,
@@ -21,9 +27,15 @@ const createBlogPostModel = (sequelize, DataTypes) => {
         onUpdate: 'CASCADE',
       },
 
-      published: DataTypes.DATE,
+      published: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
 
-      updated: DataTypes.DATE,
+      updated: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
     },
 
     {

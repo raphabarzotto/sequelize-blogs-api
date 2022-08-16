@@ -5,9 +5,13 @@ const categoriesModel = (sequelize, DataTypes) => {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
+        allowNull: false,
       },
 
-      name: DataTypes.STRING,
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
     },
 
     {
