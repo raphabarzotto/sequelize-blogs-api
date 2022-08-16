@@ -1,13 +1,5 @@
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
+require('dotenv/config');
 
-async function tokenGenerator(user) {
-  const token = jwt.sign({ data: user }, process.env.JWT_SECRET, {
-    expiresIn: '30d',
-    algorithm: 'HS256',
-  });
-
-  return token;
-}
-
-module.exports = { tokenGenerator };
+// https://www.tabnine.com/code/javascript/functions/builtins/ProcessEnv/JWT_SECRET
+module.exports = (data = {}) => jwt.sign({ data }, process.env.JWT_SECRET, { expiresIn: '30d' });

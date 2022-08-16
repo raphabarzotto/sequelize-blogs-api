@@ -15,7 +15,7 @@ const loginController = async (req, res) => {
     return res.status(400).json({ message: 'Invalid fields' });
   }
 
-  const token = tokenGenerator({ id: getUserFromDatabase.id, email });
+  const token = await tokenGenerator({ id: getUserFromDatabase.id, email });
 
   return res.status(200).json({ token });
 };
