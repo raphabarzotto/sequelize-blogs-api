@@ -6,12 +6,14 @@ const categoriesModel = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         primaryKey: true,
       },
+
       name: DataTypes.STRING,
     },
+
     {
+      tableName: 'Categories',
       underscored: false,
       timestamps: false,
-      tableName: 'Categories',
     }
   );
   return Category;
