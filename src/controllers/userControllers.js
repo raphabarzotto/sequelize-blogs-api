@@ -34,6 +34,7 @@ const getAllUser = async (_req, res) => {
   return res.status(200).json(allUsers);
 };
 
+// requisito 6, código muito parecido com o requisito 5
 const getByIdUser = async (req, res) => {
   const { id } = req.params;
 
@@ -46,8 +47,18 @@ const getByIdUser = async (req, res) => {
   return res.status(200).json(userByIdGiven);
 };
 
+// requisito 17, código muito parecido com o que fiz no Store Manager
+const deleteById = async (req, res) => {
+  const { id } = req.tokenData;
+
+  await User.destroy({ where: { id } });
+
+  return res.status(204);
+};
+
 module.exports = {
   postUser,
   getAllUser,
   getByIdUser,
+  deleteById,
 };
