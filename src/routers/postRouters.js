@@ -5,6 +5,6 @@ const { postControllers } = require('../controllers');
 
 const postRoute = express.Router();
 
-postRoute.post('/post', handleToken, rescue(postControllers.postBlogPost));
+postRoute.post('/', handleToken, rescue(postControllers.postBlogPost));
 
 module.exports = postRoute;
