@@ -1,9 +1,9 @@
 const { User } = require('../database/models');
 const { validateUserJoi, tokenGenerator } = require('../helpers');
 
-// requisito 4, código muito parecido com o que fiz no Store Manager
 // https://sequelize.org/docs/v6/core-concepts/model-querying-finders/
 // usei a documentação para procurar a melhor query
+// requisito 4, código muito parecido com o que fiz no Store Manager
 const postUser = async (req, res) => {
   const { displayName, email, password, image } = req.body;
 
@@ -27,13 +27,27 @@ const postUser = async (req, res) => {
   return res.status(201).json({ token });
 };
 
+// requisito 5, código muito parecido com o que fiz no Store Manager
 const getAllUser = async (_req, res) => {
-  const users = await User.findAll({ attributes: { exclude: ['password'] } });
+  const allUsers = await User.findAll({ attributes: { exclude: ['password'] } });
   
-  return res.status(200).json(users);
+  return res.status(200).json(allUsers);
+};
+
+const getByIdUser = async (req, res) => {
+  const { id } = req.params;
+
+  const userByIdGiven = await User.findByPk(id, { attributes: { exclude: ['password'] } });
+
+  if (!userByIdGiven) {
+    return res.status(404).json({ message: 'User does not exist' });
+  }
+
+  return res.status(200).json(userByIdGiven);
 };
 
 module.exports = {
   postUser,
   getAllUser,
+  getByIdUser,
 };
