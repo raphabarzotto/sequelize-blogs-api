@@ -1,5 +1,6 @@
-const { BlogPost, PostCategory, Category } = require('../database/models');
+const { User, BlogPost, PostCategory, Category } = require('../database/models');
 
+// requisito 12
 const postBlogPost = async (req, res) => {
   const { tokenData } = req;
   const { title, content, categoryIds } = req.body;
@@ -29,6 +30,28 @@ const postBlogPost = async (req, res) => {
   return res.status(201).json(newBlogPost);
 };
 
+// requisito 13
+const getAllBlogPost = async (req, res) => {
+  const blogPosts = await BlogPost.findAll({
+    include: [
+      { 
+        model: User, 
+        as: 'user',
+        attributes: 
+        { exclude: 'password' },
+      },
+      {
+        model: Category,
+        as: 'categories',
+        through: { attributes: [] },
+      },
+    ],
+  });
+
+  return res.status(200).json(blogPosts);
+};
+
 module.exports = {
   postBlogPost,
+  getAllBlogPost,
 };
