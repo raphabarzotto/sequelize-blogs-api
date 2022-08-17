@@ -63,13 +63,10 @@ const getByIdBlogPost = async (req, res) => {
   const post = await BlogPost.findOne({ 
     where: { id },
     include: [
-      {
-        model: User, 
+      { model: User, 
         as: 'user',
-        attributes: { exclude: 'password' },
-      },
-      {
-        model: Category, 
+        attributes: { exclude: 'password' } },
+      { model: Category, 
         as: 'categories', 
         through: { attributes: [] }, 
       }], 
@@ -78,8 +75,42 @@ const getByIdBlogPost = async (req, res) => {
   return res.status(200).json(post);
 };
 
+// requisito 15
+// coloquei as mensagens fora para consistencia e passar no linter
+const msg1 = 'Unauthorized user';
+const msg2 = 'Categories cannot be edited';
+const msg3 = 'Some required fields are missing';
+
+const putByIdBlogPost = async (req, res) => {
+  const { title, content, categoryIds } = req.body;
+  const { id } = req.params;
+  const { tokenData } = req;
+
+  if (tokenData.id !== +id) return res.status(401).json({ message: msg1 });
+
+  if (categoryIds) return res.status(400).json({ message: msg2 });
+
+  if (!title || !content) return res.status(400).json({ message: msg3 });
+
+  await BlogPost.update(req.body, { where: { id } });
+
+  const updatedPost = await BlogPost.findOne({
+    attributes: { exclude: ['published', 'updated'] },
+    where: { id },
+    include: [
+    {
+      model: Category,
+      as: 'categories',
+      through: { attributes: [] },
+    }],
+  });
+
+  return res.status(200).json(updatedPost);
+};
+
 module.exports = {
   postBlogPost,
   getAllBlogPost,
   getByIdBlogPost,
+  putByIdBlogPost,
 };
