@@ -1,26 +1,28 @@
-'use strict';
+const { DataTypes } = require('sequelize');
 
-const categoriesModel = (sequelize, DataTypes) => {
-  const Category = sequelize.define('Category', {
-      id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        allowNull: false,
-      },
-
-      name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-    },
-
-    {
-      tableName: 'Categories',
-      underscored: false,
-      timestamps: false,
-    }
-  );
-  return Category;
+const Attributes = {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false,
+  },
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
 };
 
-module.exports = categoriesModel;
+module.exports = (sequelize) => {
+  const Category = sequelize.define(
+    'Category',
+    Attributes, 
+    {
+      tableName: 'Categories',
+      underscore: true,
+      timestamps: false,
+    },
+  );
+
+  return Category;
+};

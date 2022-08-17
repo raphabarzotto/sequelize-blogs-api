@@ -12,7 +12,7 @@ app.use(express.json());
 
 app.use('/login', loginRouter);
 app.use('/user', userRouters);
-app.use('/category', categoryRouters);
+app.use('/categories', categoryRouters);
 
 app.use(handleError);
 
