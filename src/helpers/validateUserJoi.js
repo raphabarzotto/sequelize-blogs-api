@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-validateUserJoi = Joi.object({
+module.exports = Joi.object({
   displayName: Joi.string()
   .min(8)
   .required()
@@ -25,5 +25,3 @@ validateUserJoi = Joi.object({
   image: Joi.string()
     .required(),
 });
-
-module.exports = validateUserJoi;
