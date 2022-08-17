@@ -2,8 +2,8 @@ const express = require('express');
 const rescue = require('express-rescue');
 const { userControllers } = require('../controllers');
 
-const userRoute = express.Router();
+const userRouters = express.Router();
 
-userRoute.post('/', rescue(userControllers.postUser));
+userRouters.post('/', rescue(userControllers.postUser));
 
-module.exports = userRoute;
+module.exports = userRouters;

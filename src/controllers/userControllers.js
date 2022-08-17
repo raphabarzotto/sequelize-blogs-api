@@ -1,6 +1,5 @@
 const { User } = require('../database/models');
-const validateUserJoi = require('../helpers');
-const { tokenGenerator } = require('../helpers');
+const { validateUserJoi, tokenGenerator } = require('../helpers');
 
 // requisito 4, código muito parecido com o que fiz no Store Manager
 const postUser = async (req, res) => {
