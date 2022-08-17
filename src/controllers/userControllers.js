@@ -53,7 +53,7 @@ const deleteByIdUser = async (req, res) => {
 
   await User.destroy({ where: { id } });
 
-  return res.status(204);
+  return res.status(204).end();
 };
 
 module.exports = {
