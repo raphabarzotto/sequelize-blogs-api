@@ -108,9 +108,37 @@ const putByIdBlogPost = async (req, res) => {
   return res.status(200).json(updatedPost);
 };
 
+// requisito 16
+const deleteByIdBlogPost = async (req, res) => {
+  const { id } = req.params;
+  const { tokenData } = req;
+  const blogPosts = await BlogPost.findAll();
+
+  const existenceCheck = blogPosts.some((post) => post.id === +id);
+  if (!existenceCheck) {
+    return res.status(404).json({ message: 'Post does not exist' });
+  }
+
+  const foundPost = await BlogPost.findByPk(id, {
+    include: [
+      { model: User, as: 'user', attributes: { exclude: ['password'] } },
+      { model: Category, as: 'categories', through: { attributes: [] } },
+    ],
+  });
+
+  if (foundPost.userId !== tokenData.id) {
+    return res.status(401).json({ message: 'Unauthorized user' });
+  }
+
+  await BlogPost.destroy({ where: { id } });
+
+  return res.status(204).end();
+};
+
 module.exports = {
   postBlogPost,
   getAllBlogPost,
   getByIdBlogPost,
   putByIdBlogPost,
+  deleteByIdBlogPost,
 };
