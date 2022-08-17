@@ -3,6 +3,7 @@ const { handleError } = require('./middlewares');
 const {
   loginRouter,
   userRouters,
+  categoryRouters,
 } = require('./routers');
 
 const app = express();
@@ -11,6 +12,7 @@ app.use(express.json());
 
 app.use('/login', loginRouter);
 app.use('/user', userRouters);
+app.use('/category', categoryRouters);
 
 app.use(handleError);
 
