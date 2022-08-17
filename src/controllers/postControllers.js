@@ -55,7 +55,7 @@ const getByIdBlogPost = async (req, res) => {
   const { id } = req.params;
   const blogPosts = await BlogPost.findAll();
 
-  const existenceCheck = blogPosts.some((post) => post.id === id);
+  const existenceCheck = blogPosts.some((post) => post.id === +id);
   if (!existenceCheck) {
     return res.status(404).json({ message: 'Post does not exist' });
   }
