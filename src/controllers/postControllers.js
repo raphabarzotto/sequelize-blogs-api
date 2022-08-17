@@ -37,8 +37,7 @@ const getAllBlogPost = async (req, res) => {
       { 
         model: User, 
         as: 'user',
-        attributes: 
-        { exclude: 'password' },
+        attributes: { exclude: 'password' },
       },
       {
         model: Category,
@@ -51,7 +50,36 @@ const getAllBlogPost = async (req, res) => {
   return res.status(200).json(blogPosts);
 };
 
+// requisito 14
+const getByIdBlogPost = async (req, res) => {
+  const { id } = req.params;
+  const blogPosts = await BlogPost.findAll();
+
+  const existenceCheck = blogPosts.some((post) => post.id === id);
+  if (!existenceCheck) {
+    return res.status(404).json({ message: 'Post does not exist' });
+  }
+
+  const post = await BlogPost.findOne({ 
+    where: { id },
+    include: [
+      {
+        model: User, 
+        as: 'user',
+        attributes: { exclude: 'password' },
+      },
+      {
+        model: Category, 
+        as: 'categories', 
+        through: { attributes: [] }, 
+      }], 
+  });
+
+  return res.status(200).json(post);
+};
+
 module.exports = {
   postBlogPost,
   getAllBlogPost,
+  getByIdBlogPost,
 };
