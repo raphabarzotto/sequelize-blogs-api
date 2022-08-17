@@ -48,7 +48,7 @@ const getByIdUser = async (req, res) => {
 };
 
 // requisito 17, código muito parecido com o que fiz no Store Manager
-const deleteById = async (req, res) => {
+const deleteByIdUser = async (req, res) => {
   const { id } = req.tokenData;
 
   await User.destroy({ where: { id } });
@@ -60,5 +60,5 @@ module.exports = {
   postUser,
   getAllUser,
   getByIdUser,
-  deleteById,
+  deleteByIdUser,
 };
