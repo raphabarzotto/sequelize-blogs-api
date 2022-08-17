@@ -12,12 +12,10 @@ const postUser = async (req, res) => {
     return res.status(code).json({ message });
   }
 
-
   // https://sequelize.org/docs/v6/core-concepts/model-querying-finders/
   const [user1, created] = await User.findOrCreate({
     where: { displayName, email, password, image },  
   });
-
 
   if (!created) {
     return res.status(409).json({ message: 'User already registered' });
