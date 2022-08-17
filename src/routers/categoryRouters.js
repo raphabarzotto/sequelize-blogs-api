@@ -3,8 +3,8 @@ const rescue = require('express-rescue');
 const { categoryControllers } = require('../controllers');
 const { handleToken } = require('../middlewares');
 
-const categoryRouter = express.Router();
+const categoryRouters = express.Router();
 
-categoryRouter.post('/categories', handleToken, rescue(categoryControllers.postCategory));
+categoryRouters.post('/', handleToken, rescue(categoryControllers.postCategory));
 
-module.exports = categoryRouter;
+module.exports = categoryRouters;
