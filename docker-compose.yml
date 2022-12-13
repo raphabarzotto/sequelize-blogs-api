@@ -15,10 +15,10 @@ services:
     depends_on:
       - db
     ports:
-      - 3000:3000
+      - 3001:3001 # API port
     environment:
       MYSQL_USER: root
-      MYSQL_PASSWORD: password
+      MYSQL_PASSWORD: password # mysql password for container
       HOSTNAME: db
       JWT_SECRET: secretJWT
   db:
@@ -27,10 +27,10 @@ services:
     platform: linux/x86_64
     restart: always
     ports:
-      - 3306:3306
-      - 33060:33060
+      - 3306:3306 # mysql container port
+      - 33060:33060 # mysql container port 2
     environment:
-      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password # mysql password for container
 
 networks:
   default:
