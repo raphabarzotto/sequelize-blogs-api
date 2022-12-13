@@ -18,6 +18,4 @@ app.use('/post', postRouters);
 
 app.use(handleError);
 
-// É importante exportar a constante `app`,
-// para que possa ser utilizada pelo arquivo `src/server.js`
 module.exports = app;
