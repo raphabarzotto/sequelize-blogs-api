@@ -1,5 +1,6 @@
 # Sequelize Blogs API
 A simple Sequelize API built using express and sequelize in Javascript.
+
 Project was made in August 2022 as a part of [Trybe's Back-end Course](https://www.betrybe.com/)
 
 # How to Install
